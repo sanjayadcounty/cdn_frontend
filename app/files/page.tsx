@@ -1,13 +1,8 @@
-import Upload from '@/component/Upload'
-
 import React from 'react'
 
 function page() {
   return (
-    <> 
-    <Upload/>
-  
-    </>
+    <div>page</div>
   )
 }
 
