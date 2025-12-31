@@ -428,7 +428,7 @@ export default function UploadPage() {
     <>
       <div className="min-h-screen bg-gray-100 flex">
         {/* Sidebar - Same as AllUser page */}
-      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-indigo-800 to-purple-900 shadow-2xl flex flex-col">
+      <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-blue-500 shadow-2xl flex flex-col">
   {/* Header */}
   <div className="flex items-center justify-between px-6 py-8 border-b border-white/10">
     <div className="flex items-center gap-3">
@@ -475,7 +475,7 @@ export default function UploadPage() {
     </div>
     <button
       onClick={handleLogout}
-      className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-3 rounded-lg transition shadow-md"
+      className="w-full flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium py-3 rounded-lg transition shadow-md"
     >
       <LogOut className="w-4 h-4" />
       Logout
@@ -508,7 +508,7 @@ export default function UploadPage() {
                 <div className="flex items-center gap-4">
                   <Link
                     href="/alluser"
-                    className="hidden lg:flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium"
+                    className="hidden lg:flex items-center gap-2 text-black font-medium"
                   >
                     <ChevronLeft className="w-5 h-5" />
                     Back to Users
@@ -523,8 +523,8 @@ export default function UploadPage() {
               {/* Upload Card */}
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-10">
                 <div className="flex items-center gap-3 mb-6">
-                  <Upload className="w-8 h-8 text-indigo-600" />
-                  <h2 className="text-2xl font-bold text-gray-900">Upload New File</h2>
+                  <Upload className="w-8 h-8 text-gray-200" />
+                  <h2 className="text-xl font-bold text-gray-900">Upload New File</h2>
                 </div>
 
                 <form onSubmit={handleUpload} className="space-y-6">
@@ -538,7 +538,7 @@ export default function UploadPage() {
                         id="file-input"
                         type="file"
                         onChange={(e) => setFile(e.target.files?.[0] || null)}
-                        className="block w-full text-sm text-gray-700 file:mr-4 file:py-3 file:px-6 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer"
+                        className="block w-full text-sm text-gray-700 file:mr-4 file:py-3 file:px-6 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-400 file:text-white  cursor-pointer"
                         disabled={uploading}
                         required
                       />
@@ -554,12 +554,12 @@ export default function UploadPage() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         <div className="flex items-center gap-2">
                           <Lock className="w-4 h-4" />
-                          Password Protection (Optional)
+                          Password Protection
                         </div>
                       </label>
                       <input
                         type="text"
-                        placeholder="Leave empty for no password"
+                        placeholder="Enter the password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
@@ -570,7 +570,7 @@ export default function UploadPage() {
                   <button
                     type="submit"
                     disabled={uploading || !file}
-                    className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 disabled:opacity-70 disabled:cursor-not-allowed transition shadow-md"
+                    className="flex items-center gap-3 px-8 py-4 bg-green-500 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 disabled:opacity-70 disabled:cursor-not-allowed transition shadow-md"
                   >
                     <Upload className="w-5 h-5" />
                     {uploading ? "Uploading..." : "Upload File"}
@@ -580,8 +580,8 @@ export default function UploadPage() {
 
               {/* Files List */}
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
-                  <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                <div className="bg-blue-500 px-8 py-6">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-3">
                     <FileText className="w-7 h-7" />
                     Uploaded Files ({files.length})
                   </h3>
@@ -669,7 +669,7 @@ export default function UploadPage() {
                                 </button>
                                 <button
                                   onClick={() => handleFileAction(f, "download")}
-                                  className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition"
+                                  className="flex items-center gap-2 px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 font-medium transition"
                                 >
                                   <Download className="w-4 h-4" />
                                   Download

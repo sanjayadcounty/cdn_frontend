@@ -253,6 +253,7 @@ import {
   ChevronRight,
   PlusCircle,
 } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
 
 interface User {
   _id: string;
@@ -289,7 +290,7 @@ export default function AllUser() {
     } catch (error) {
       console.error("Error fetching users:", error);
       alert("Failed to load users. Please log in again.");
-      router.push("/login");
+      router.push("/");
     } finally {
       setLoading(false);
     }
@@ -313,7 +314,8 @@ export default function AllUser() {
 
       setFormData({ fullname: "", email: "", mobile: "", address: "" });
       await fetchUsers();
-      alert("User added successfully!");
+      toast.success("User added successfully!")
+      
     } catch (error: any) {
       alert(error.response?.data?.message || "Failed to add user");
     } finally {
@@ -322,27 +324,23 @@ export default function AllUser() {
   };
 
   const handleLogout = async () => {
-    try {
-      await axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
-    } catch (err) {
-      console.error("Logout error:", err);
-    } finally {
-      router.push("/");
-    }
+    router.push("/");
+    
+   
   };
 
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex">
         {/* Enhanced Sidebar - Fixed, Clean & Professional */}
-    <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-indigo-800 to-purple-900 shadow-2xl flex flex-col">
+    <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-blue-400 shadow-2xl flex flex-col">
   {/* Header */}
   <div className="flex items-center justify-between px-6 py-8 border-b border-white/10">
     <div className="flex items-center gap-3">
       <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
         <Shield className="w-6 h-6 text-white" />
       </div>
-      <h1 className="text-xl font-bold text-white">Admin Portal</h1>
+      <h3 className="text-xl font-bold text-white">Admin </h3>
     </div>
     <button
       onClick={() => setSidebarOpen(false)}
@@ -378,7 +376,7 @@ export default function AllUser() {
     </div>
     <button
       onClick={handleLogout}
-      className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-3 rounded-lg transition shadow-md"
+      className="w-full flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium py-3 rounded-lg transition shadow-md"
     >
       <LogOut className="w-4 h-4" />
       Logout
@@ -397,7 +395,7 @@ export default function AllUser() {
               >
                 <Menu className="w-6 h-6" />
               </button>
-              <h2 className="text-lg font-semibold text-gray-800">Users Management</h2>
+              <h2 className="text-lg font-semibold text-gray-800">Users</h2>
               <div className="w-10" />
             </div>
           </header>
@@ -409,7 +407,7 @@ export default function AllUser() {
 
               {/* Add User Card */}
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-10">
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+                <div className="bg-blue-400 px-8 py-6">
                   <h4 className="text-xl font-bold text-white flex items-center gap-3">
                     <UserPlus className="w-5 h-5" />
                     Add New User
@@ -447,7 +445,7 @@ export default function AllUser() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 disabled:opacity-70 disabled:cursor-not-allowed transition shadow-lg"
+                        className="flex items-center gap-3 px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 disabled:opacity-70 disabled:cursor-not-allowed transition shadow-lg"
                       >
                         <PlusCircle className="w-5 h-5" />
                         {loading ? "Adding User..." : "Add User"}
@@ -459,7 +457,7 @@ export default function AllUser() {
 
               {/* Users Table */}
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
+                <div className="bg-blue-400 px-8 py-6">
                   <h4 className="text-xl font-bold text-white flex items-center gap-3">
                     <Users className="w-5 h-5" />
                     All Users ({users.length})
@@ -503,7 +501,7 @@ export default function AllUser() {
                             <td className="px-6 py-4">
                               <Link
                                 href={`/upload/${user._id}`}
-                                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition shadow"
+                                className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg font-medium transition shadow"
                               >
                                 Upload Files
                                 <ChevronRight className="w-4 h-4" />
@@ -528,6 +526,16 @@ export default function AllUser() {
           />
         )}
       </div>
+        <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              pauseOnHover
+              theme="light"
+              toastClassName="font-medium"
+            />
     </>
   );
 }
